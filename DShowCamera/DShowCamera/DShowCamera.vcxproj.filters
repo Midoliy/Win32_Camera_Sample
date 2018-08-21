@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Model">
+      <UniqueIdentifier>{017dd5c6-4cd9-492a-97b9-db8ada8260e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Model">
+      <UniqueIdentifier>{9880c5c6-0ff6-4679-b5c0-029e7b47a783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Func">
+      <UniqueIdentifier>{f28e9afb-7088-4ed0-bb2e-79a1cb06d298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Func">
+      <UniqueIdentifier>{46b171c7-fb9d-460d-8d99-e6ff24fbe34a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Window">
+      <UniqueIdentifier>{5b10e66e-4566-4f42-b2bd-c8eaa4c74021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Window">
+      <UniqueIdentifier>{6d57053d-e932-41dc-b379-c1427307e18c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Include">
+      <UniqueIdentifier>{d98fe9ad-3d70-4d0b-a897-d6d6a5b19591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Model\Entity">
+      <UniqueIdentifier>{e61cc127-bc9a-4b52-863b-5589d2a39954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Model\Module">
+      <UniqueIdentifier>{e6c2dbc2-7810-4481-9f62-72d865f44597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Model\Entity">
+      <UniqueIdentifier>{84c12999-347f-4059-a7bf-e07e1225889c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Model\Module">
+      <UniqueIdentifier>{2eca2aa0-1816-467e-a603-df0fde99d00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Model\ValueObject">
+      <UniqueIdentifier>{2c7488a4-c04e-4466-a768-317ea0100209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Model\ValueObject">
+      <UniqueIdentifier>{bb78dbf1-42c4-43b2-9309-eb20a72ecb40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Struct">
+      <UniqueIdentifier>{dde101e6-eb76-492f-893c-6634582f77f3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>ヘッダー ファイル\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Qedit.h">
+      <Filter>ヘッダー ファイル\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>ヘッダー ファイル\Func</Filter>
+    </ClInclude>
+    <ClInclude Include="Func.h">
+      <Filter>ヘッダー ファイル\Func</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>ヘッダー ファイル\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoCamera.h">
+      <Filter>ヘッダー ファイル\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Moniter.h">
+      <Filter>ヘッダー ファイル\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoGraph.h">
+      <Filter>ヘッダー ファイル\Model\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoInfo.h">
+      <Filter>ヘッダー ファイル\Model\ValueObject</Filter>
+    </ClInclude>
+    <ClInclude Include="VDSize.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.Entity.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.Module.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.ValueObject.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>ヘッダー ファイル\Model\Entity</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>ソース ファイル\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>ソース ファイル\Func</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoCamera.cpp">
+      <Filter>ソース ファイル\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Moniter.cpp">
+      <Filter>ソース ファイル\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoGraph.cpp">
+      <Filter>ソース ファイル\Model\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoInfo.cpp">
+      <Filter>ソース ファイル\Model\ValueObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>ソース ファイル\Model\Entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DShowCamera.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="DShowCamera.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

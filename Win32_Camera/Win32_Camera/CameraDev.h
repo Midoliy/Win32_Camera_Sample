@@ -1,20 +1,23 @@
 ﻿#pragma once
 #include <vector>
+#include <memory>
 
 namespace camera 
 {
 	// カメラデバイスを管理するクラス
 	class CameraDev
 	{
-	/*private:
-		TCHAR name[256];
-		std::vector<Resolution> res;*/
+	private:
+		std::wstring name;
+		std::vector<Resolution> resolutions;
+		std::unique_ptr<ICreateDevEnum> createDevEnum();
+		CComPtr<IMoniker> moniker;
 
 	public:
 		CameraDev();
 		~CameraDev();
-		/*PTCHAR					GetName();
-		std::vector<Resolution> GetResolution();*/
+		std::wstring			GetName();
+		std::vector<Resolution> GetResolution();
 
 	};
 
@@ -25,4 +28,5 @@ namespace camera
 		int    height;
 		double frame;
 	};
+
 }
