@@ -3,6 +3,8 @@
 #include <vcruntime_exception.h>
 
 using namespace std;
+using namespace Struct;
+using namespace Model::Entity;
 
 namespace Model
 {

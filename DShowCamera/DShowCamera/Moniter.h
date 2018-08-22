@@ -14,13 +14,14 @@ namespace Model
             HRESULT InputImage(std::shared_ptr<Image> img);
             HRESULT OutpuImage();
             BOOL    UpdateWindowRect();
-            
+
+            Moniter();
             Moniter(HWND hWnd);
 
         private:
-            const HWND _hWnd;
-            const HDC  _devContext;
-            const HDC  _memContext;
+            HWND _hWnd;
+            HDC  _devContext;
+            HDC  _memContext;
 
             RECT _rect;
             std::unique_ptr<Image> _img;

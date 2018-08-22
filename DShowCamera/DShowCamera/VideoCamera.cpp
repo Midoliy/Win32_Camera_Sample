@@ -33,8 +33,8 @@ namespace Model
             SetResolution(type);
 
             // グラフにフィルタを追加する.
-            _graph.AddFilter(_comSrcFilter, L"DeviceCaptureFilter");
-            _graph.AddFilter(comGrabberFilter, L"Sample Grabber");
+            _graph.AddFilter(_comSrcFilter   , L"DeviceCaptureFilter");
+            _graph.AddFilter(comGrabberFilter, L"Sample Grabber"     );
 
             // SampleGrabber フィルタから Grabber オブジェクトを作成.
             _comSampleGrabber = VideoGraph::CreateSampleGrabber(comGrabberFilter);

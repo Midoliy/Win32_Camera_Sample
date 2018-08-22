@@ -2,146 +2,39 @@
 #include "MainWindow.h"
 #include "Resource.h"
 #include <iostream>
-#include <memory>
 #include <vector>
 
 #include "dshow.h"
 #include "EntryPoint.h"
 #include "Func.h"
 #include "Window.h"
-#include "Model.Entity.h"
 
 using namespace std;
 using namespace Func;
 using namespace Struct;
+using namespace Control;
 using namespace Model::Entity;
 
 namespace Window
 {
-    const uint16_t MainWindow::kMAX_LOADSTRING = 100;
-    const wchar_t* MainWindow::kSELF_NAME = L"MainWindow";
-
     // カメラデバイス一覧
-    vector<unique_ptr<VideoCamera>> _cameras;
-    int32_t                         _selectIdx = 0;
+    vector<unique_ptr<VideoCamera>> MainWindow::_cameras;
+    int32_t                         MainWindow::_selectIdx;
 
-    // 各種ウィンドウハンドラ
-    HWND _staticWnd = NULL;
+    // 映像出力先インスタンス
+    Moniter MainWindow::_moniter;
 
-
-    /// <summary>
-    /// コンストラクタ
-    /// </summary>
-    /// <param name="hInstance"></param>
-    /// <param name="className"></param>
-    /// <param name="title"></param>
-    MainWindow::MainWindow(
-        const HINSTANCE hInstance, 
-        const wchar_t*  title
-    )
-    {
-        _hInst = hInstance;
-        _title = title;
-        Register(_hInst);
-    }
+    // ダイアログコントロール一覧
+    DlgControl MainWindow::_ctrlPreview;
+    DlgControl MainWindow::_ctrlStartBtn;
+    DlgControl MainWindow::_ctrlStopBtn;
 
     /// <summary>
-    /// デストラクタ
+    /// メインダイアログを表示する.
     /// </summary>
-    MainWindow::~MainWindow()
+    void MainWindow::Show()
     {
-
-    }
-
-    //
-    //  関数: MyRegisterClass()
-    //
-    //  目的: ウィンドウ クラスを登録します。
-    //
-    ATOM MainWindow::Register(
-        const HINSTANCE hInstance
-    )
-    {
-        _wcex.cbSize         = sizeof(WNDCLASSEX);
-        _wcex.style          = CS_HREDRAW | CS_VREDRAW;
-        _wcex.lpfnWndProc    = WndProc;
-        _wcex.cbClsExtra     = 0;
-        _wcex.cbWndExtra     = 0;
-        _wcex.hInstance      = _hInst;
-        _wcex.hIcon          = LoadIcon(_hInst, MAKEINTRESOURCE(IDI_DSHOWCAMERA));
-        _wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-        _wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW + 1);
-        _wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_DSHOWCAMERA);
-        _wcex.lpszClassName  = kSELF_NAME;
-        _wcex.hIconSm        = LoadIcon(_wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
-        return RegisterClassExW(&_wcex);
-    }
-
-    //
-    //   関数: InitInstance(HINSTANCE, int)
-    //
-    //   目的: インスタンス ハンドルを保存して、メイン ウィンドウを作成します。
-    //
-    //   コメント:
-    //
-    //        この関数で、グローバル変数でインスタンス ハンドルを保存し、
-    //        メイン プログラム ウィンドウを作成および表示します。
-    //
-    BOOL MainWindow::InitInstance(
-        const int nCmdShow
-    )
-    {
-        // Formを作成.
-        // 返り値のウィンドウハンドルは, Formのハンドル
-        HWND hWnd = CreateWindowW(kSELF_NAME,           // クラス名
-                                  _title,               // ウィンドウタイトル
-                                  WS_OVERLAPPEDWINDOW,  // スタイル
-                                  CW_USEDEFAULT,        // x
-                                  0,                    // y
-                                  800,                  // width
-                                  600,                  // height
-                                  nullptr,              // 親ウィンドウハンドル
-                                  nullptr,              // メニュー
-                                  _hInst,               // インスタンスハンドル
-                                  nullptr);             // lpパラメータ
-
-        //// Formにボタンを設置する.
-        //CreateWindowW(TEXT("BUTTON"),                           // クラス名
-        //              TEXT("Kitty"),                            // ボタンのキャプション名
-        //              WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,    // スタイル
-        //              0,                                        // x
-        //              0,                                        // y
-        //              100,                                      // width
-        //              50,                                       // height
-        //              hWnd,                                     // 親ウィンドウハンドル
-        //              NULL,                                     // メニュー
-        //              _hInst,                                   // インスタンスハンドル
-        //              NULL);                                    // lpパラメータ
-
-        // FormにStaticコントロールを設置する.
-        _staticWnd = CreateWindowW(L"Static Control",                        // クラス名
-                                   L"",                                      // ボタンのキャプション名
-                                   WS_CHILD | WS_VISIBLE | SS_BLACKFRAME,    // スタイル
-                                   0,                                        // x
-                                   0,                                        // y
-                                   640,                                      // width
-                                   480,                                      // height
-                                   hWnd,                                     // 親ウィンドウハンドル
-                                   NULL,                                     // メニュー
-                                   _hInst,                                   // インスタンスハンドル
-                                   NULL);                                    // lpパラメータ
-
-
-        if (!hWnd)
-        {
-            return FALSE;
-        }
-
-        ShowWindow(hWnd, nCmdShow);
-        UpdateWindow(hWnd);
-
-        return TRUE;
+        DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_MAINDIALOG), NULL, (DLGPROC)WndProc);
     }
 
     //
@@ -155,70 +48,77 @@ namespace Window
     //
     //
     LRESULT CALLBACK MainWindow::WndProc(
-        HWND   hWnd, 
-        UINT   message, 
-        WPARAM wParam, 
+        HWND   hWnd,
+        UINT   message,
+        WPARAM wParam,
         LPARAM lParam
     )
     {
         switch (message)
         {
-        case WM_CREATE:
-        {
-            CoInitialize(NULL);
-            // システムデバイスの列挙
-            auto deviceEnum = Device::CreateEnum();
-
-            // ビデオ入力モニカの列挙
-            auto enumMoniker = Device::CreateEnumMoniker(deviceEnum);
-            deviceEnum->Release();
-            
-            ULONG     fetched = 0;
-            IMoniker* moniker;
-            while (enumMoniker->Next(1, &moniker, &fetched) == S_OK)
-            {   // デバイスを取得し, vectorに追加.
-                _cameras.push_back(make_unique<VideoCamera>(moniker));
-            }
-
-            auto m = Moniter{ hWnd };
-            _cameras[_selectIdx]->BeginProjectionTo(&m);
-
-            moniker->Release();
-            enumMoniker->Release();
-            
-            CoUninitialize();
-            break;
-        }
-        case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // 選択されたメニューの解析:
-            switch (wmId)
+            case WM_INITDIALOG:
             {
-            case IDM_EXIT:
-                return DestroyWindow(hWnd);
+                // 変数の初期化
+                _selectIdx = 0;
+
+                // ダイアログコントロールの初期化
+                _ctrlPreview  = DlgControl{ hWnd, IDC_PREVIEW };
+                _ctrlStartBtn = DlgControl{ hWnd, ID_START    };
+                _ctrlStopBtn  = DlgControl{ hWnd, ID_STOP     };
+
+                // システムデバイスの列挙
+                auto deviceEnum = Device::CreateEnum();
+
+                // ビデオ入力モニカの列挙
+                auto enumMoniker = Device::CreateEnumMoniker(deviceEnum);
+                deviceEnum->Release();
+
+                ULONG     fetched = 0;
+                IMoniker* moniker;
+                while (enumMoniker->Next(1, &moniker, &fetched) == S_OK)
+                {   // デバイスを取得し, vectorに追加.
+                    _cameras.push_back(make_unique<VideoCamera>(moniker));
+                }
+
+                _moniter = Moniter{ _ctrlPreview.GetHandler() };
+
+                moniker->Release();
+                enumMoniker->Release();
+
+                return TRUE;
+            }
+            case WM_COMMAND:
+            {
+                int wmId = LOWORD(wParam);
+                // 選択されたメニューの解析:
+                switch (wmId)
+                {
+                    case ID_START:
+                    {
+                        _cameras[_selectIdx]->BeginProjectionTo(&_moniter);
+                        return TRUE;
+                    }
+                    case ID_STOP:
+                    {
+                        _cameras[_selectIdx]->EndProjectionTo();
+                        return TRUE;
+                    }
+                    default:
+                    {
+                        return DefWindowProc(hWnd, message, wParam, lParam);
+                    }
+                }
+            }
+            case WM_DESTROY:
+            {
+                _cameras[_selectIdx]->EndProjectionTo();
+                PostQuitMessage(0);
+                return TRUE;
+            }
             default:
+            {
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
-        }
-        break;
-        case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: HDC を使用する描画コードをここに追加してください...
-            EndPaint(hWnd, &ps);
-        }
-        break;
-        case WM_DESTROY:
-        {
-            _cameras[_selectIdx]->EndProjectionTo();
-            PostQuitMessage(0);
-            break;
-        }
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
-        return TRUE;
+        }        
     }
 }

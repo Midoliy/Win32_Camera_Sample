@@ -7,9 +7,6 @@
 
 namespace Model
 {
-    using namespace Entity;
-    using namespace Struct;
-
     namespace Module
     {
         class VideoGraph
@@ -23,7 +20,7 @@ namespace Model
             static IVideoWindow*          CreateVideoWindow(IGraphBuilder* graphBuilder);
 
             HRESULT AddFilter(IBaseFilter* filter, std::wstring filterName);
-            HRESULT SetOutputMoniter(Moniter* moniter, VDSize* videoSize);
+            HRESULT SetOutputMoniter(Entity::Moniter* moniter, Struct::VDSize* videoSize);
             HRESULT CreateRenderStream(const GUID* category, const GUID* type, IUnknown* source, IBaseFilter* compressor, IBaseFilter* renderer);
             HRESULT Run();
             HRESULT Stop();

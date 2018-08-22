@@ -55,6 +55,12 @@
     <Filter Include="ヘッダー ファイル\Struct">
       <UniqueIdentifier>{dde101e6-eb76-492f-893c-6634582f77f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Control">
+      <UniqueIdentifier>{14e34dfc-b453-4ac1-9875-6edc9a57adf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Control">
+      <UniqueIdentifier>{dda0ffb2-5188-4642-846a-88bc33186182}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -111,6 +117,9 @@
     <ClInclude Include="Image.h">
       <Filter>ヘッダー ファイル\Model\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="DlgControl.h">
+      <Filter>ヘッダー ファイル\Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>ソース ファイル\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgControl.cpp">
+      <Filter>ソース ファイル\Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

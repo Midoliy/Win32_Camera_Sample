@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DlgControl.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Model.Module.h" />
     <ClInclude Include="Model.ValueObject.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Moniter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DlgControl.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="VideoCamera.cpp" />
     <ClCompile Include="Device.cpp" />

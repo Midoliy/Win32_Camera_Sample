@@ -9,6 +9,7 @@ namespace Model
     namespace Entity
     {
 
+        Moniter::Moniter() {}
         Moniter::Moniter(
             HWND hWnd
         ) : _hWnd(hWnd)
